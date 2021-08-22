@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RickAndMortyWithRetrofit</string>
+    <string name="universe_character_image">Universe Character image</string>
+</resources>
