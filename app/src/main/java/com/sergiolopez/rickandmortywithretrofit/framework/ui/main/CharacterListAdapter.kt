@@ -2,6 +2,7 @@ package com.sergiolopez.rickandmortywithretrofit.framework.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.sergiolopez.rickandmortywithretrofit.databinding.CharacterItemBinding
@@ -29,8 +30,18 @@ class CharacterListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val character = universeCharacters[position]
-        holder.binding.characterImage.load(character.image)
-        holder.binding.characterName.text = character.name
-        holder.binding.characterSpecies.text = character.species
+        holder.binding.apply {
+            characterImage.load(character.image)
+            characterName.text = character.name
+            characterSpecies.text = character.species
+
+            universeCharacter.setOnClickListener {
+                val direction =
+                    CharacterListFragmentDirections.actionCharacterListFragmentToDetailUniverseCharacterFragment(
+                        character.id
+                    )
+                root.findNavController().navigate(direction)
+            }
+        }
     }
 }
